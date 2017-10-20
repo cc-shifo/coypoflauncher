@@ -1,0 +1,10 @@
+/MyLauncherTest/app/build
+/MyLauncherTest/*.iml
+/MyLauncherTest/.gradle
+/MyLauncherTest/local.properties
+/MyLauncherTest/.idea/workspace.xml
+/MyLauncherTest/.idea/libraries
+/MyLauncherTest/.DS_Store
+/MyLauncherTest/build
+/MyLauncherTest/captures
+/MyLauncherTest/.externalNativeBuild

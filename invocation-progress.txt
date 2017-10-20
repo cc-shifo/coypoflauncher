@@ -1,0 +1,37 @@
+一、仿launcher图标MyLauncher数据流程。学习View的自定义(如DotView.java)。
+MainActivity	第1271行 new Controller()
+		197行setupScrollView()---->207行controller.initData()
+						---->1285行设置图标setImgUrl()
+注: FinalBitmap是afinal开源库的API
+ApplicationInfo	117行设置getIcon(lc)---->FinalBitmap fb.decodeBitmap(getImgUrl(), ...)
+					从网络上获取图标
+					---->setIcon(bitmap)设置
+					---->发出加载图标广播ApplicationInfo.LOAD_ICON
+ApplicationInfo	第54行drawIcon()---->getIcon(LayoutCalculator)
+		45行drawBoundIcon---->drawIcon()
+
+SpringBoardPage第193行drawNormalIcon或者99行的drawNormalRaw---->drawBoundIcon()
+		158行drawNormalRaw---->drawNormalIcon()
+		67行drawNormal---->drawNormalRaw()
+		59行onDraw()---->drawNormal()
+
+MainActivity	230行loaded()---->new SpringBoardPage(MainActivity.this)创建控件
+					进而会调用他的onDraw
+
+这个new Controller在MainActiviy对象被创建时就会创建
+MainActivity	第1351行new Controller()---->onPostExecute()---->loaded()
+MainActivity	第195行setupScrollView()---->loaded()
+
+MainActivity	第176 建OnLayoutReady类---->OnGlobalLayoutListener实现布局监听器
+						---->监听器回调函数onGlobalLayout
+							---->setupScrollView()
+MainActivity	onCreate的第188行---->new OnLayoutReady()
+
+2.原始链接
+  https://github.com/q3904175/MyLauncher
+
+二、参考链接
+1.介绍怎样自定义一个launcher app
+  http://arnab.ch/blog/2013/08/how-to-write-custom-launcher-app-in-android/
+  源码
+  https://github.com/arnabc/simplelauncher
